@@ -36,6 +36,8 @@ public void withdraw(double amount) {
     public double interestEarned() {
         double amount = sumTransactions();
         switch(accountType){
+            case CHECKING:
+        		 return amount * 0.001;
             case SAVINGS:
                 if (amount <= 1000)
                     return amount * 0.001;
