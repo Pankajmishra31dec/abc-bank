@@ -5,14 +5,10 @@ import java.util.List;
 
 public class Account {
 
-    public static final int CHECKING = 0;
-    public static final int SAVINGS = 1;
-    public static final int MAXI_SAVINGS = 2;
-
-    private final int accountType;
+    private final AccountType accountType;
     public List<Transaction> transactions;
 
-    public Account(int accountType) {
+    public Account(AccountType accountType) {
         this.accountType = accountType;
         this.transactions = new ArrayList<Transaction>();
     }
@@ -36,6 +32,8 @@ public void withdraw(double amount) {
     public double interestEarned() {
         double amount = sumTransactions();
         switch(accountType){
+        	case CHECKING:
+        		 return amount * 0.001;
             case SAVINGS:
                 if (amount <= 1000)
                     return amount * 0.001;
@@ -66,7 +64,7 @@ public void withdraw(double amount) {
         return amount;
     }
 
-    public int getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
